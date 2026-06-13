@@ -8,6 +8,7 @@ const LINKS = [
   { href: '/', label: 'Inicio' },
   { href: '/horarios', label: 'Horarios' },
   { href: '/nosotros', label: 'La Parroquia' },
+  { href: '/sacerdotes', label: 'Sacerdotes' },
   { href: '/sacramentos', label: 'Sacramentos' },
   { href: '/grupos', label: 'Grupos' },
   { href: '/ermitas', label: 'Ermitas' },

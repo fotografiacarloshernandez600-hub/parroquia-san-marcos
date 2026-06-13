@@ -9,14 +9,14 @@ export default async function GruposPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Grupos y Movimientos Parroquiales</h2>
           <p>Conoce los grupos de catequesis, pastoral, oración y servicio de nuestra comunidad. Si deseas integrarte a alguno, acércate en su horario de reunión o visita la oficina parroquial.</p>
         </div>
 
         <div className="grid-cards">
           {(grupos ?? []).map((g) => (
-            <div className="card-item" key={g.id}>
+            <div className="card-item reveal" key={g.id}>
               {g.imagen && <img src={publicUrl(g.imagen)} alt={g.nombre} />}
               <div className="card-body">
                 <h3>{g.nombre}</h3>

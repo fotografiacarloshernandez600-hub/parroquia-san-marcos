@@ -124,7 +124,17 @@ create table if not exists solicitud_archivos (
 -- backend de Next.js usando la "service role key" (que ignora RLS).
 -- Esto evita exponer datos sensibles directamente al navegador.
 
+create table if not exists clero (
+    id bigint generated always as identity primary key,
+    nombre text not null,
+    cargo text,
+    bio text,
+    imagen text,
+    orden integer default 0
+);
+
 alter table settings enable row level security;
+alter table clero enable row level security;
 alter table admin_users enable row level security;
 alter table horarios_misa enable row level security;
 alter table horarios_oficina enable row level security;
@@ -224,6 +234,11 @@ on conflict do nothing;
 -- Ermita de ejemplo (editar/eliminar y agregar las reales desde el admin)
 insert into ermitas (nombre, descripcion, ubicacion_texto, lat, lng, orden) values
 ('Ermita de ejemplo', 'Edite o elimine esta ermita desde el panel de administración y agregue las ermitas reales que pertenecen a la parroquia, con su ubicación en el mapa.', 'Paraíso, Tabasco', 18.39611, -93.21278, 1)
+on conflict do nothing;
+
+-- Sacerdote de ejemplo (editar/eliminar desde el admin)
+insert into clero (nombre, cargo, bio, orden) values
+('Nombre del párroco', 'Párroco', 'Edita o elimina este ejemplo desde el panel de administración y agrega a los sacerdotes de la parroquia con su foto, cargo y una breve reseña.', 1)
 on conflict do nothing;
 
 -- =========================================================

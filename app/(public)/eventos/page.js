@@ -11,14 +11,14 @@ export default async function EventosPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Eventos y Avisos Parroquiales</h2>
           <p>Fiestas patronales, novenas, jornadas, retiros y demás celebraciones especiales de la comunidad.</p>
         </div>
 
         <div className="grid-cards">
           {(eventos ?? []).map((ev) => (
-            <div className="card-item" key={ev.id}>
+            <div className="card-item reveal" key={ev.id}>
               {ev.imagen && <img src={publicUrl(ev.imagen)} alt={ev.titulo} />}
               <div className="card-body">
                 <h3>{ev.titulo}</h3>

@@ -8,7 +8,7 @@ export default async function NoticiasPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Noticias del Vaticano</h2>
           <p>Contenido proporcionado por <a href="https://www.vaticannews.va/es.html" target="_blank" rel="noopener noreferrer">Vatican News</a>. Da clic en cada título para leer la noticia completa en su sitio oficial.</p>
         </div>

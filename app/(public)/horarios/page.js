@@ -13,7 +13,7 @@ export default async function HorariosPage() {
     <>
       <section className="contenido">
         <div className="container">
-          <div className="titulo-seccion">
+          <div className="titulo-seccion reveal">
             <h2>Horarios de Misa</h2>
             <p>Estos son nuestros horarios regulares de celebraciones eucarísticas. Pueden cambiar en fechas especiales; consulta los avisos para confirmaciones.</p>
           </div>
@@ -22,10 +22,10 @@ export default async function HorariosPage() {
             <tbody>
               {(misas ?? []).map((m) => (
                 <tr key={m.id}>
-                  <td>{m.dia}</td>
-                  <td>{m.hora}</td>
-                  <td>{m.tipo}</td>
-                  <td>{m.lugar}</td>
+                  <td data-label="Día">{m.dia}</td>
+                  <td data-label="Hora">{m.hora}</td>
+                  <td data-label="Celebración">{m.tipo}</td>
+                  <td data-label="Lugar">{m.lugar}</td>
                 </tr>
               ))}
               {(!misas || misas.length === 0) && (
@@ -38,7 +38,7 @@ export default async function HorariosPage() {
 
       <section className="contenido alt">
         <div className="container">
-          <div className="titulo-seccion">
+          <div className="titulo-seccion reveal">
             <h2>Atención de Oficina Parroquial</h2>
             <p>Horarios para trámites, solicitudes de constancias, pláticas, y asuntos administrativos.</p>
           </div>
@@ -47,9 +47,9 @@ export default async function HorariosPage() {
             <tbody>
               {(oficina ?? []).map((o) => (
                 <tr key={o.id}>
-                  <td>{o.dia}</td>
-                  <td>{o.hora_inicio} - {o.hora_fin}</td>
-                  <td>{o.notas}</td>
+                  <td data-label="Día">{o.dia}</td>
+                  <td data-label="Horario">{o.hora_inicio} - {o.hora_fin}</td>
+                  <td data-label="Notas">{o.notas}</td>
                 </tr>
               ))}
               {(!oficina || oficina.length === 0) && (

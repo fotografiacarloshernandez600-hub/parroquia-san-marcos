@@ -8,6 +8,7 @@ const ITEMS_CONTENIDO = [
   { href: '/admin/manage/horarios_oficina', label: 'Atención de oficina' },
   { href: '/admin/manage/sacramentos', label: 'Sacramentos / requisitos' },
   { href: '/admin/manage/grupos', label: 'Grupos y movimientos' },
+  { href: '/admin/manage/clero', label: 'Sacerdotes' },
   { href: '/admin/manage/ermitas', label: 'Ermitas' },
   { href: '/admin/manage/eventos', label: 'Eventos / avisos' },
   { href: '/admin/manage/galeria', label: 'Galería de fotos' },

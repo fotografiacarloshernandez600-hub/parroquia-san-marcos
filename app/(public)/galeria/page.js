@@ -18,7 +18,7 @@ export default async function GaleriaPage({ searchParams }) {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Galería de Fotos</h2>
           <p>Imágenes de celebraciones, eventos y vida parroquial.</p>
         </div>

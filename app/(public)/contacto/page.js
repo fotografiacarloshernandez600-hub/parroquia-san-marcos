@@ -11,7 +11,7 @@ export default async function ContactoPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Contacto y Ubicación</h2>
         </div>
         <div className="tarjetas">

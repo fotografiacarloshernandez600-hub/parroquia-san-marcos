@@ -22,7 +22,7 @@ export default async function CalendarioPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Calendario Litúrgico</h2>
           <p>Fechas importantes del año litúrgico, tiempos fuertes y celebraciones especiales.</p>
         </div>

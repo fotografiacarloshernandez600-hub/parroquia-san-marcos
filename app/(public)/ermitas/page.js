@@ -11,7 +11,7 @@ export default async function ErmitasPage() {
   return (
     <section className="contenido">
       <div className="container">
-        <div className="titulo-seccion">
+        <div className="titulo-seccion reveal">
           <h2>Ermitas de la Parroquia</h2>
           <p>Estas son las ermitas y capillas que pertenecen a nuestra parroquia, ubicadas en distintas comunidades. Da clic en cada marcador del mapa para conocer más sobre cada una.</p>
         </div>
@@ -20,7 +20,7 @@ export default async function ErmitasPage() {
 
         <div className="grid-cards mt-2">
           {lista.map((erm) => (
-            <div className="card-item" key={erm.id}>
+            <div className="card-item reveal" key={erm.id}>
               {erm.imagen && <img src={publicUrl(erm.imagen)} alt={erm.nombre} />}
               <div className="card-body">
                 <h3>{erm.nombre}</h3>
