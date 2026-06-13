@@ -3,22 +3,23 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-// Activa las animaciones de aparición (.reveal -> .visible) cuando los
-// elementos entran en pantalla. Se re-ejecuta en cada cambio de página
-// (usePathname) y SIEMPRE tiene un respaldo que muestra el contenido,
-// para que nunca quede una sección invisible / "en blanco".
+// Anima la aparición de elementos .reveal al hacer scroll.
+// El contenido es VISIBLE por defecto (en el CSS). Este script activa el
+// modo animado (body.js-reveal) solo si todo está OK, así nunca se queda
+// una sección invisible aunque algo falle.
 export default function ScrollReveal() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const body = document.body;
+    let observer;
+    let respaldo;
+
     const mostrarTodo = () => {
+      body.classList.remove('js-reveal');
       document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
     };
 
-    // Respaldo de seguridad: si en 1.2s algo no disparó, mostramos todo igual.
-    const respaldo = setTimeout(mostrarTodo, 1200);
-
-    let observer;
     try {
       const prefiereMenos =
         typeof window !== 'undefined' &&
@@ -26,9 +27,14 @@ export default function ScrollReveal() {
 
       if (prefiereMenos || typeof IntersectionObserver === 'undefined') {
         mostrarTodo();
-        clearTimeout(respaldo);
         return;
       }
+
+      // Activar el modo animado (oculta los .reveal para animarlos)
+      body.classList.add('js-reveal');
+
+      // Respaldo: si en 1.5s algo no disparó, mostramos todo igual
+      respaldo = setTimeout(mostrarTodo, 1500);
 
       observer = new IntersectionObserver(
         (entries) => {
@@ -39,25 +45,27 @@ export default function ScrollReveal() {
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
       );
 
-      const elementos = document.querySelectorAll('.reveal:not(.visible)');
-      // Lo que ya está en pantalla al cargar, se muestra de inmediato.
-      elementos.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight) {
-          el.classList.add('visible');
-        } else {
-          observer.observe(el);
-        }
+      // Mostrar de inmediato lo que ya está en pantalla; observar el resto
+      requestAnimationFrame(() => {
+        const elementos = document.querySelectorAll('.reveal:not(.visible)');
+        elementos.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight + 100) {
+            el.classList.add('visible');
+          } else {
+            observer.observe(el);
+          }
+        });
       });
     } catch {
       mostrarTodo();
     }
 
     return () => {
-      clearTimeout(respaldo);
+      if (respaldo) clearTimeout(respaldo);
       if (observer) observer.disconnect();
     };
   }, [pathname]);

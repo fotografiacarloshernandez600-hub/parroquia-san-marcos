@@ -264,14 +264,20 @@ main > section.contenido:first-child,
 .titulo-seccion h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
 .titulo-seccion p { color: var(--gris); max-width: 620px; margin: 18px auto 0; font-size: 1.05rem; }
 
-/* ---------- Reveal al hacer scroll ---------- */
-.reveal {
+/* ---------- Reveal al hacer scroll ----------
+   IMPORTANTE: el contenido es visible por defecto. Solo se oculta para
+   animar cuando el <body> tiene la clase 'js-reveal' (la pone el script
+   ScrollReveal cuando confirma que todo funciona). Si el JS falla o tarda,
+   el contenido NUNCA queda invisible. */
+.reveal { opacity: 1; transform: none; }
+
+body.js-reveal .reveal {
     opacity: 0;
     transform: translateY(36px);
     transition: opacity 0.7s var(--transicion), transform 0.7s var(--transicion);
     will-change: opacity, transform;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+body.js-reveal .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal.d1 { transition-delay: 0.08s; }
 .reveal.d2 { transition-delay: 0.16s; }
 .reveal.d3 { transition-delay: 0.24s; }
