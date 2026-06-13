@@ -247,12 +247,22 @@ nav.menu a.activo::after { transform: scaleX(1); }
 .boton.ghost:hover { background: var(--verde); color: #fff; border-color: var(--verde); }
 
 /* ---------- Secciones ---------- */
-section.contenido { padding: 96px 0; }
+section.contenido { padding: 110px 0; }
 section.contenido.alt { background: var(--arena-2); }
 
-.titulo-seccion { text-align: center; margin-bottom: 56px; }
+/* La primera sección de una página interior (sin hero) respira más arriba */
+main > section.contenido:first-child,
+.container ~ section.contenido:first-child {
+    padding-top: 80px;
+}
+
+.titulo-seccion { text-align: center; margin-bottom: 64px; }
+.titulo-seccion .eyebrow {
+    display: block;
+    margin-bottom: 18px;
+}
 .titulo-seccion h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
-.titulo-seccion p { color: var(--gris); max-width: 620px; margin: 14px auto 0; font-size: 1.05rem; }
+.titulo-seccion p { color: var(--gris); max-width: 620px; margin: 18px auto 0; font-size: 1.05rem; }
 
 /* ---------- Reveal al hacer scroll ---------- */
 .reveal {
