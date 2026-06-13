@@ -1,0 +1,165 @@
+/* ===================== PANEL DE ADMINISTRACIÓN ===================== */
+.admin-wrap {
+    --a-primario: #1f7a5c;
+    --a-secundario: #e08a1e;
+    --a-rojo: #c1432d;
+    --a-borde: #e0e0e0;
+    --a-fondo: #f4f6f5;
+
+    display: flex;
+    min-height: 100vh;
+    background: var(--a-fondo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2b2b2b;
+}
+.admin-wrap a { color: var(--a-primario); }
+.admin-wrap * { box-sizing: border-box; }
+
+.admin-sidebar {
+    width: 230px;
+    background: #1c2b27;
+    color: #fff;
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+.admin-sidebar h2 {
+    font-size: 1.1rem;
+    padding: 0 18px 16px;
+    border-bottom: 1px solid #33473f;
+    margin: 0 0 10px;
+    color: #fff;
+}
+.admin-sidebar a {
+    display: block;
+    color: #d8e6e1;
+    padding: 10px 18px;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.admin-sidebar a:hover, .admin-sidebar a.activo {
+    background: var(--a-primario);
+    color: #fff;
+}
+.admin-sidebar .grupo-titulo {
+    padding: 14px 18px 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #8aa39c;
+    letter-spacing: 1px;
+}
+.admin-sidebar form { margin: 0; }
+.admin-sidebar button.link-like {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #d8e6e1;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+.admin-sidebar button.link-like:hover { background: var(--a-primario); color: #fff; }
+
+.admin-main { flex: 1; padding: 24px; max-width: 1100px; }
+
+.admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.admin-topbar h1 { margin: 0; font-size: 1.5rem; color: #2b2b2b; font-family: inherit; }
+
+.admin-wrap .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-wrap table.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+.admin-wrap table.admin-table th, .admin-wrap table.admin-table td {
+    border-bottom: 1px solid var(--a-borde);
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.92rem;
+    vertical-align: top;
+}
+.admin-wrap table.admin-table th { background: #f0f3f2; }
+.admin-wrap table.admin-table tr:hover { background: #fafdfb; }
+
+.admin-wrap .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: var(--a-primario);
+    font-family: inherit;
+}
+.admin-wrap .btn.naranja { background: var(--a-secundario); }
+.admin-wrap .btn.rojo { background: var(--a-rojo); }
+.admin-wrap .btn.gris { background: #888; }
+.admin-wrap .btn.chico { padding: 5px 10px; font-size: 0.8rem; }
+.admin-wrap .btn:disabled { opacity: 0.6; cursor: default; }
+
+.admin-wrap .form-grupo { margin-bottom: 14px; }
+.admin-wrap .form-grupo label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+.admin-wrap .form-grupo input,
+.admin-wrap .form-grupo select,
+.admin-wrap .form-grupo textarea {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid var(--a-borde);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+.admin-wrap .form-grupo small { color: #888; }
+
+.admin-wrap .alerta { padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-weight: 600; }
+.admin-wrap .alerta.exito { background: #e3f6e8; color: #1f7a5c; border: 1px solid #1f7a5c; }
+.admin-wrap .alerta.error { background: #fdecea; color: #c1432d; border: 1px solid #c1432d; }
+
+.admin-wrap .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: #fff; }
+.admin-wrap .badge.pendiente { background: var(--a-secundario); }
+.admin-wrap .badge.revision { background: #2389c9; }
+.admin-wrap .badge.aprobado { background: var(--a-primario); }
+.admin-wrap .badge.rechazado { background: var(--a-rojo); }
+
+.admin-wrap .img-mini { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; }
+
+.login-box {
+    max-width: 380px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-box h1 { text-align: center; font-size: 1.3rem; color: #1f7a5c; font-family: inherit; }
+.login-box .btn {
+    display: inline-block; width: 100%; text-align: center;
+    padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;
+    font-size: 0.95rem; font-weight: 600; color: #fff; background: #1f7a5c;
+}
+.login-box .alerta.error { background: #fdecea; color: #c1432d; border: 1px solid #c1432d; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-weight: 600; }
+.login-box .form-grupo { margin-bottom: 14px; }
+.login-box .form-grupo label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+.login-box .form-grupo input {
+    width: 100%; padding: 9px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box;
+}
