@@ -651,16 +651,34 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .card-evento:hover img { transform: none; }  /* sin zoom en carteles */
 
 /* =========================================================
-   IMAGEN EN CALENDARIO LITÚRGICO
+   CALENDARIO LITÚRGICO — imágenes grandes con su nombre
    ========================================================= */
-.calendario-item { align-items: flex-start; }
-.calendario-cuerpo { flex: 1; min-width: 0; }
-.calendario-img {
-    margin-top: 16px;
-    width: 100%;
-    max-height: 720px;
-    border-radius: var(--radio);
+.calendario-imagenes {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.calendario-figura {
+    margin: 0;
+    background: var(--blanco);
     border: 1px solid var(--borde);
-    object-fit: contain;
-    background: var(--arena-2);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.calendario-figura:hover { transform: translateY(-6px); box-shadow: var(--sombra-hover); }
+.calendario-figura img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.calendario-figura figcaption {
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: var(--verde);
+    padding: 18px 16px 22px;
 }

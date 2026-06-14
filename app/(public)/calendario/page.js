@@ -1,23 +1,15 @@
 import { supabaseAdmin, publicUrl } from '@/lib/supabaseAdmin';
-import { COLORES_LITURGICOS_HEX } from '@/lib/tablesConfig';
-import { formatFechaCorta } from '@/lib/format';
 
 export const metadata = { title: 'Calendario Litúrgico | Parroquia San Marcos Evangelista' };
 
 export default async function CalendarioPage() {
   const db = supabaseAdmin();
-  const hoy = new Date().toISOString().slice(0, 10);
-
-  const { data: proximos } = await db.from('calendario_liturgico').select('*')
-    .gte('fecha', hoy)
-    .order('fecha', { ascending: true })
-    .order('orden', { ascending: true });
-
-  const { data: pasados } = await db.from('calendario_liturgico').select('*')
-    .lt('fecha', hoy)
-    .order('fecha', { ascending: false })
+  const { data: items } = await db.from('calendario_liturgico')
+    .select('*')
     .order('orden', { ascending: true })
-    .limit(5);
+    .order('id', { ascending: false });
+
+  const lista = items ?? [];
 
   return (
     <section className="contenido">
@@ -25,47 +17,22 @@ export default async function CalendarioPage() {
         <div className="titulo-seccion reveal">
           <span className="eyebrow">Año litúrgico</span>
           <h2>Calendario Litúrgico</h2>
-          <p>Fechas importantes del año litúrgico, tiempos fuertes y celebraciones especiales.</p>
+          <p>Consulta el calendario litúrgico de nuestra parroquia con las celebraciones y tiempos del año.</p>
         </div>
 
-        <h3>Próximas fechas</h3>
-        {(proximos ?? []).map((it) => (
-          <div className="calendario-item reveal" key={it.id}>
-            <div className="fecha-box">{formatFechaCorta(it.fecha)}</div>
-            <div className="calendario-cuerpo">
-              <strong>{it.titulo}</strong>
-              {it.color_liturgico && (
-                <span className="color-pill" style={{ background: COLORES_LITURGICOS_HEX[it.color_liturgico] || '#999' }}>
-                  {it.color_liturgico}
-                </span>
-              )}
-              {it.descripcion && <p style={{ margin: '6px 0 0', whiteSpace: 'pre-line' }}>{it.descripcion}</p>}
+        <div className="calendario-imagenes">
+          {lista.map((it) => (
+            <figure className="calendario-figura reveal" key={it.id}>
               {it.imagen && (
-                <img className="calendario-img" src={publicUrl(it.imagen)} alt={it.titulo} loading="lazy" />
+                <img src={publicUrl(it.imagen)} alt={it.titulo || 'Calendario litúrgico'} loading="lazy" />
               )}
-            </div>
-          </div>
-        ))}
-        {(!proximos || proximos.length === 0) && <p>Próximamente se publicará el calendario litúrgico.</p>}
-
-        {pasados && pasados.length > 0 && (
-          <>
-            <h3 className="mt-2">Fechas recientes</h3>
-            {pasados.map((it) => (
-              <div className="calendario-item" style={{ opacity: 0.6 }} key={it.id}>
-                <div className="fecha-box">{formatFechaCorta(it.fecha)}</div>
-                <div className="calendario-cuerpo">
-                  <strong>{it.titulo}</strong>
-                  {it.color_liturgico && (
-                    <span className="color-pill" style={{ background: COLORES_LITURGICOS_HEX[it.color_liturgico] || '#999' }}>
-                      {it.color_liturgico}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </>
-        )}
+              {it.titulo && <figcaption>{it.titulo}</figcaption>}
+            </figure>
+          ))}
+          {lista.length === 0 && (
+            <p className="text-center">Próximamente se publicará el calendario litúrgico.</p>
+          )}
+        </div>
       </div>
     </section>
   );

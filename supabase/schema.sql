@@ -92,7 +92,7 @@ create table if not exists galeria (
 
 create table if not exists calendario_liturgico (
     id bigint generated always as identity primary key,
-    fecha date not null,
+    fecha date,
     titulo text not null,
     descripcion text,
     color_liturgico text,
