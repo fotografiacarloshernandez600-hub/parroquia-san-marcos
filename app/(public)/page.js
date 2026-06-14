@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { supabaseAdmin, publicUrl } from '@/lib/supabaseAdmin';
 import { getSettings } from '@/lib/settings';
 import { getVaticanNews } from '@/lib/vaticanNews';
 import { truncar } from '@/lib/format';
@@ -81,8 +81,8 @@ export default async function InicioPage() {
           </div>
           <div className="grid-cards">
             {(eventos ?? []).map((ev, i) => (
-              <div className={`card-item reveal d${(i % 3) + 1}`} key={ev.id}>
-                {ev.imagen && <img src={ev.imagen} alt={ev.titulo} />}
+              <div className={`card-item card-evento reveal d${(i % 3) + 1}`} key={ev.id}>
+                {ev.imagen && <img src={publicUrl(ev.imagen)} alt={ev.titulo} />}
                 <div className="card-body">
                   <h3>{ev.titulo}</h3>
                   {ev.fecha && <div className="meta">📅 {ev.fecha}{ev.hora ? ' · ' + ev.hora : ''}</div>}

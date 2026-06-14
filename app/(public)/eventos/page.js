@@ -18,7 +18,7 @@ export default async function EventosPage() {
 
         <div className="grid-cards">
           {(eventos ?? []).map((ev) => (
-            <div className="card-item reveal" key={ev.id}>
+            <div className="card-item card-evento reveal" key={ev.id}>
               {ev.imagen && <img src={publicUrl(ev.imagen)} alt={ev.titulo} />}
               <div className="card-body">
                 <h3>{ev.titulo}</h3>

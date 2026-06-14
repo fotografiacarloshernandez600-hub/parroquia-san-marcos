@@ -635,3 +635,17 @@ footer.sitio-footer a { position: relative; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 3px solid rgba(200, 113, 78, 0.5); outline-offset: 2px; border-radius: 6px;
 }
+
+/* =========================================================
+   IMÁGENES DE EVENTOS — mostrar el cartel completo
+   (los carteles suelen ser verticales; no los recortamos)
+   ========================================================= */
+.card-evento img {
+    aspect-ratio: auto;          /* respeta la forma real del cartel */
+    width: 100%;
+    height: auto;
+    max-height: 520px;           /* tope para carteles muy largos */
+    object-fit: contain;         /* se ve completo, sin recortar */
+    background: var(--arena-2);   /* relleno suave en los lados si sobra */
+}
+.card-evento:hover img { transform: none; }  /* sin zoom en carteles */
