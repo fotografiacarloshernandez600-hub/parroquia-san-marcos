@@ -649,3 +649,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     background: var(--arena-2);   /* relleno suave en los lados si sobra */
 }
 .card-evento:hover img { transform: none; }  /* sin zoom en carteles */
+
+/* =========================================================
+   IMAGEN EN CALENDARIO LITÚRGICO
+   ========================================================= */
+.calendario-item { align-items: flex-start; }
+.calendario-cuerpo { flex: 1; }
+.calendario-img {
+    margin-top: 12px;
+    max-width: 100%;
+    width: auto;
+    max-height: 420px;
+    border-radius: var(--radio);
+    border: 1px solid var(--borde);
+    object-fit: contain;
+    background: var(--arena-2);
+}

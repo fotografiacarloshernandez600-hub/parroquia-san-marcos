@@ -96,6 +96,7 @@ create table if not exists calendario_liturgico (
     titulo text not null,
     descripcion text,
     color_liturgico text,
+    imagen text,
     orden integer default 0
 );
 

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { supabaseAdmin, publicUrl } from '@/lib/supabaseAdmin';
 import { COLORES_LITURGICOS_HEX } from '@/lib/tablesConfig';
 import { formatFechaCorta } from '@/lib/format';
 
@@ -23,15 +23,16 @@ export default async function CalendarioPage() {
     <section className="contenido">
       <div className="container">
         <div className="titulo-seccion reveal">
+          <span className="eyebrow">Año litúrgico</span>
           <h2>Calendario Litúrgico</h2>
           <p>Fechas importantes del año litúrgico, tiempos fuertes y celebraciones especiales.</p>
         </div>
 
         <h3>Próximas fechas</h3>
         {(proximos ?? []).map((it) => (
-          <div className="calendario-item" key={it.id}>
+          <div className="calendario-item reveal" key={it.id}>
             <div className="fecha-box">{formatFechaCorta(it.fecha)}</div>
-            <div>
+            <div className="calendario-cuerpo">
               <strong>{it.titulo}</strong>
               {it.color_liturgico && (
                 <span className="color-pill" style={{ background: COLORES_LITURGICOS_HEX[it.color_liturgico] || '#999' }}>
@@ -39,6 +40,9 @@ export default async function CalendarioPage() {
                 </span>
               )}
               {it.descripcion && <p style={{ margin: '6px 0 0', whiteSpace: 'pre-line' }}>{it.descripcion}</p>}
+              {it.imagen && (
+                <img className="calendario-img" src={publicUrl(it.imagen)} alt={it.titulo} loading="lazy" />
+              )}
             </div>
           </div>
         ))}
@@ -50,7 +54,7 @@ export default async function CalendarioPage() {
             {pasados.map((it) => (
               <div className="calendario-item" style={{ opacity: 0.6 }} key={it.id}>
                 <div className="fecha-box">{formatFechaCorta(it.fecha)}</div>
-                <div>
+                <div className="calendario-cuerpo">
                   <strong>{it.titulo}</strong>
                   {it.color_liturgico && (
                     <span className="color-pill" style={{ background: COLORES_LITURGICOS_HEX[it.color_liturgico] || '#999' }}>
