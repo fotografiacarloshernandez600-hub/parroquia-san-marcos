@@ -1,4 +1,5 @@
 import { getSettings } from '@/lib/settings';
+import { publicUrl } from '@/lib/supabaseAdmin';
 import { updateSettingsAction } from '@/lib/actions/settings';
 
 export const metadata = { title: 'Datos generales | Panel admin' };
@@ -19,15 +20,34 @@ const CAMPOS = [
 export default async function AjustesPage({ searchParams }) {
   const params = await searchParams;
   const settings = await getSettings();
+  const bannerUrl = settings.banner_inicio ? publicUrl(settings.banner_inicio) : null;
 
   return (
     <>
       <div className="admin-topbar"><h1>Datos generales del sitio</h1></div>
 
       {params?.ok && <div className="alerta exito">Datos guardados correctamente.</div>}
+      {params?.error && <div className="alerta error">{params.error}</div>}
 
       <div className="card">
-        <form action={updateSettingsAction}>
+        <form action={updateSettingsAction} encType="multipart/form-data">
+
+          {/* ---- Banner / foto de inicio ---- */}
+          <div className="form-grupo" style={{ paddingBottom: 18, borderBottom: '1px solid #e0e0e0', marginBottom: 22 }}>
+            <label htmlFor="f_banner">Foto del banner de inicio (portada)</label>
+            {bannerUrl && (
+              <div style={{ marginBottom: 10 }}>
+                <img src={bannerUrl} alt="Banner actual" style={{ width: '100%', maxWidth: 380, borderRadius: 10, display: 'block', marginBottom: 8 }} />
+                <label style={{ display: 'inline', fontWeight: 'normal', fontSize: '0.9rem' }}>
+                  <input type="checkbox" name="quitar_banner" value="1" style={{ width: 'auto', marginRight: 6 }} />
+                  Quitar el banner actual (volver al fondo de color)
+                </label>
+              </div>
+            )}
+            <input type="file" name="banner_inicio" id="f_banner" accept=".jpg,.jpeg,.png,.webp" />
+            <small>Sube una foto horizontal de la parroquia (recomendado: 1600×900 px o similar). Puedes cambiarla cuando quieras. Formatos: JPG, PNG, WEBP.</small>
+          </div>
+
           {CAMPOS.map((c) => (
             <div className="form-grupo" key={c.name}>
               <label htmlFor={`f_${c.name}`}>{c.label}</label>

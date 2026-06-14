@@ -14,19 +14,30 @@ export default async function InicioPage() {
   const { data: eventos } = await db.from('eventos').select('*').order('fecha', { ascending: true, nullsFirst: false }).limit(3);
   const noticias = await getVaticanNews(3);
 
-  // Si subes una foto a /public/hero.jpg, el hero la usará automáticamente.
-  const heroClase = settings.hero_foto === '1' ? 'hero con-foto' : 'hero';
+  // Foto del banner subida desde el panel admin (Datos generales).
+  // Si no hay foto, el hero usa el degradado de color por defecto.
+  const bannerUrl = settings.banner_inicio
+    ? `${process.env.SUPABASE_URL}/storage/v1/object/public/uploads/${settings.banner_inicio}`
+    : null;
+
+  const heroStyle = bannerUrl
+    ? {
+        backgroundImage: `linear-gradient(180deg, rgba(20,50,40,0.45), rgba(20,50,40,0.78)), url('${bannerUrl}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }
+    : undefined;
 
   return (
     <>
-      <section className={heroClase}>
+      <section className="hero" style={heroStyle}>
         <div className="hero-inner">
           <span className="eyebrow">Paraíso, Tabasco</span>
           <h1>Parroquia San Marcos Evangelista</h1>
           <p>&quot;Comprometernos decididamente con la nueva evangelización&quot; desde una comunidad parroquial samaritana.</p>
           <div className="hero-cta">
             <Link href="/horarios" className="boton">Ver horarios de misa</Link>{' '}
-            <Link href="/sacramentos" className="boton secundario">Solicitar sacramentos</Link>
+            <Link href="/sacramentos" className="boton secundario">Sacramentos</Link>
           </div>
         </div>
         <div className="hero-scroll" aria-hidden="true"></div>
