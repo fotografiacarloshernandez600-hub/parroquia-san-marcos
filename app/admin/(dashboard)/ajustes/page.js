@@ -15,6 +15,9 @@ const CAMPOS = [
   { name: 'mision', label: 'Misión', tipo: 'textarea', filas: 4 },
   { name: 'vision', label: 'Visión', tipo: 'textarea', filas: 4 },
   { name: 'patrono', label: 'San Marcos Evangelista (patrono)', tipo: 'textarea', filas: 4 },
+  { name: 'vivo_facebook_url', label: 'Transmisión en vivo — enlace de Facebook de la parroquia', tipo: 'text', ayuda: 'Pega el enlace de tu página o de la transmisión de Facebook (ej. https://www.facebook.com/sanmarcosevangelistaparaiso). Se mostrará el video cuando estén transmitiendo en vivo.' },
+  { name: 'vivo_papa_url', label: 'Misa del Papa / Vaticano — enlace de YouTube', tipo: 'text', ayuda: 'Pega el enlace de YouTube de la transmisión (ej. https://www.youtube.com/watch?v=XXXX o el del canal de Vatican News en vivo).' },
+  { name: 'vivo_mexico_url', label: 'Misa de México — enlace de YouTube', tipo: 'text', ayuda: 'Pega el enlace de YouTube de la misa de México (ej. la de la Basílica de Guadalupe).' },
 ];
 
 export default async function AjustesPage({ searchParams }) {
@@ -56,6 +59,7 @@ export default async function AjustesPage({ searchParams }) {
               ) : (
                 <input type="text" name={c.name} id={`f_${c.name}`} defaultValue={settings[c.name]} />
               )}
+              {c.ayuda && <small>{c.ayuda}</small>}
             </div>
           ))}
           <button type="submit" className="btn">Guardar cambios</button>

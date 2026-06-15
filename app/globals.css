@@ -682,3 +682,40 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     color: var(--verde);
     padding: 18px 16px 22px;
 }
+
+/* =========================================================
+   TRANSMISIONES EN VIVO (Noticias)
+   ========================================================= */
+.vivo-seccion { margin-bottom: 8px; }
+.vivo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 26px;
+}
+.vivo-card {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.vivo-card:hover { transform: translateY(-6px); box-shadow: var(--sombra-hover); }
+.vivo-card h3 { font-size: 1.25rem; color: var(--verde); margin: 0; }
+.vivo-nota { color: var(--gris); font-size: 0.9rem; margin: 0; }
+.vivo-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;          /* proporción 16:9 */
+    border-radius: var(--radio);
+    overflow: hidden;
+    background: #000;
+}
+.vivo-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+.vivo-card .boton { align-self: flex-start; }
